@@ -5,6 +5,9 @@ class ApplicationController < ActionController::Base
   protected
 
   def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:name])
+    # configで認証キーをemail => nameに変更したので、
+    # sign_up時に設定するユーザー名はemailからnameになった
+    # ストロングパラメータで認証キーではないカラム(name)の操作許可をしていたので、emailに変更
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:email])
   end
 end
