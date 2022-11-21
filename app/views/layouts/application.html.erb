@@ -17,14 +17,14 @@
       <% end %>
       <% if user_signed_in? %>
         <li>
-          <!-- 自分の投稿一覧を表示-->
-          <%= link_to "Home", root_path %>
+          <!-- ログインしている自分の投稿一覧を表示-->
+          <%= link_to "Home", user_path(current_user.id) %>
         </li>
         <li>
-           Users追加
+           <%= link_to "Users", users_path %>
         </li>
         <li>
-           Books追加
+           <%= link_to "Books", books_path %>
         </li>
         <li>
           <%= link_to "Log out", destroy_user_session_path, method: :delete %>

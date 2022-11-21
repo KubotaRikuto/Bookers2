@@ -1,5 +1,5 @@
 class BooksController < ApplicationController
-  # userのshowと一緒の画面で表示
+  # userのshowと一緒の画面で表示 => これを共通レイアウトにする？
   def new
     @book = Book.new
   end

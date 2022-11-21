@@ -1,0 +1,25 @@
+<!-- users index-->
+<h2>Users</h2>
+<table>
+  <thead>
+    <th>image</th>
+    <th>name</th>
+    <th colspan="3"></th>
+  </thead>
+  <% @users.each do |users|%>
+    <tbody>
+      <tr>
+        <td>
+          <%= image_tag users.get_profile_image(80, 80) %>
+        </td>
+        <td>
+          <%= users.name %>
+        </td>
+        <td>
+          <!--users show-->
+          <%= link_to "Show", user_path(users.id) %>
+        </td>
+      </tr>
+    </tbody>
+  <% end %>
+</table>
