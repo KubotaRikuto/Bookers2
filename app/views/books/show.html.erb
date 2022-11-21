@@ -6,11 +6,15 @@
     <tbody>
       <tr>
         <td>
-          <!--投稿してないのに写真が出現するのはなぜ？-->
-          <%= image_tag @book.user.get_profile_image(80, 80) %>
+          <%= link_to user_path(@book.user.id) do %>
+            <%= image_tag @book.user.get_profile_image(80, 80) %><br>
+            <%= @book.user.name %>
+          <% end %>
         </td>
         <td>
-          <%= @book.title %>
+          <%= link_to book_path(@book.id) do %>
+            <%= @book.title %>
+          <% end %>
         </td>
         <td>
           <%= @book.body %>

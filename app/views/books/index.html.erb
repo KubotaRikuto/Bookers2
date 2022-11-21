@@ -1,1 +1,28 @@
-<h1>books indexページ</h1>
+<h2>Books</h2>
+<table>
+  <thead>
+    <th></th>
+    <th>Title</th>
+    <th>Opinion</th>
+    <th colspan="3"></th>
+  </thead>
+  <% @books.each do |books|%>
+    <tbody>
+      <tr>
+        <td>
+          <%= link_to user_path(books.user.id) do %>
+            <%= image_tag books.user.get_profile_image(80, 80) %>
+          <% end %>
+        </td>
+        <td>
+          <%= link_to book_path(books.id) do %>
+            <%= books.title %>
+          <% end %>
+        </td>
+        <td>
+          <%= books.body %>
+        </td>
+      </tr>
+    </tbody>
+  <% end %>
+</table>
