@@ -1,32 +1,34 @@
 class BooksController < ApplicationController
-  # userのshowと一緒の画面で表示 => これを共通レイアウトにする？
-  def new
-    @book = Book.new
-  end
+
+  # before_action :user_info_new_book, only: [:index]
 
   def create
     @book = Book.new(book_params)
     @book.user_id = current_user.id
-
     if @book.save
-        # books/showにリダイレクト
-        redirect_to book_path(@book.id)
+      # books/showにリダイレクト
+      redirect_to book_path(@book.id)
     else
-        # books/indexにリダイレクト
-        render :index
+      # books/indexにリダイレクト
+      render :index
     end
   end
 
   def index
-      @books = Book.all
+    # user_info_new_book
+    @user = current_user
+    @new_book = Book.new
+    @books = Book.all
   end
 
   def show
-      @book = Book.find(params[:id])
+    @user = current_user
+    @new_book = Book.new
+    @book = Book.find(params[:id])
   end
 
   def edit
-      @book = Book.find(params[:id])
+    @book = Book.find(params[:id])
   end
 
   def update
@@ -50,4 +52,6 @@ class BooksController < ApplicationController
   def book_params
     params.require(:book).permit(:title, :body)
   end
+
+
 end

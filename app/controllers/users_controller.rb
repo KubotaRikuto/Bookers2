@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :is_matching_login_user, only: [:edit, :update]
+  before_action :user_info_new_book, only: [:index, :show]
 
   def edit
     is_matching_login_user
@@ -7,13 +8,13 @@ class UsersController < ApplicationController
   end
 
   def index
+    user_info_new_book
     @users = User.all
   end
 
   def show
-    @user = User.find(params[:id])
-    @book = @user.books.new
-    @books = @user.books.index
+    user_info_new_book
+    @books = @user.books.all
   end
 
   def update

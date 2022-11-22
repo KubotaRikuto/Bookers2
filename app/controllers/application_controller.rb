@@ -17,4 +17,9 @@ class ApplicationController < ActionController::Base
     # ストロングパラメータで認証キーではないカラム(name)の操作許可をしていたので、emailに変更
     devise_parameter_sanitizer.permit(:sign_up, keys: [:email])
   end
+
+  def user_info_new_book
+    @user = current_user
+    @new_book = Book.new
+  end
 end
