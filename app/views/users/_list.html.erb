@@ -1,3 +1,15 @@
+<% if notice %>
+  <p><%= notice %></p>
+<% end %>
+<!-- エラーメッセージ -->
+<% if @new_book.errors.any? %>
+  <%= @new_book.errors.count %>errors prohibited this obj from being saved:
+  <ul>
+    <% @new_book.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
 <!-- 共通レイアウト -->
 <div>
   <div>

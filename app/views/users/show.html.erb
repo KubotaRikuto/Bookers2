@@ -1,3 +1,4 @@
+
 <!-- user info & New book-->
 <%= render 'list', user: @user, book: @new_book %>
 
@@ -14,7 +15,6 @@
     <tbody>
       <tr>
         <td>
-          <!--投稿してないのに写真が出現するのはなぜ？-->
           <%= image_tag books.user.get_profile_image(80, 80) %>
         </td>
         <td>

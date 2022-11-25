@@ -1,29 +1,29 @@
 class BooksController < ApplicationController
 
-  # before_action :user_info_new_book, only: [:index]
+  before_action :user_info_new_book, only: [:index, :show]
 
   def create
-    @book = Book.new(book_params)
-    @book.user_id = current_user.id
-    if @book.save
+    @new_book = Book.new(book_params)
+    @new_book.user_id = current_user.id
+    if @new_book.save
+      flash[:notice] = "You have created book successfully."
       # books/showにリダイレクト
-      redirect_to book_path(@book.id)
+      redirect_to book_path(@new_book.id)
     else
       # books/indexにリダイレクト
+      @user = current_user
+      @books = Book.all
       render :index
     end
   end
 
   def index
-    # user_info_new_book
-    @user = current_user
-    @new_book = Book.new
+    user_info_new_book
     @books = Book.all
   end
 
   def show
-    @user = current_user
-    @new_book = Book.new
+    user_info_new_book
     @book = Book.find(params[:id])
   end
 
@@ -33,7 +33,7 @@ class BooksController < ApplicationController
 
   def update
     @book = Book.find(params[:id])
-    @user = User.find(params[:id])
+    @user = @book.user.find(params[:id])
     if @book.update(book_params)
       redirect_to book_path(@book.id)
     else

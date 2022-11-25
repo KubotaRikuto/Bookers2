@@ -14,6 +14,7 @@ class UsersController < ApplicationController
 
   def show
     user_info_new_book
+    @user = User.find(params[:id])
     @books = @user.books.all
   end
 
@@ -21,6 +22,7 @@ class UsersController < ApplicationController
     is_matching_login_user
     @user = User.find(params[:id])
     if @user.update(user_params)
+      # フラッシュメッセージはdeviseのnotice使用      flash[:notice] = "You have updated user successfully."
       redirect_to user_path(@user.id)
     else
       render :edit
@@ -37,7 +39,7 @@ class UsersController < ApplicationController
     user_id = params[:id].to_i
     login_user_id = current_user.id
     if (user_id != login_user_id )
-      redirect_to user_path(user_id)
+      redirect_to user_path(current_user.id)
     end
   end
 
