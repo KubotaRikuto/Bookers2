@@ -1,4 +1,14 @@
 <h2>User info</h2>
+<!-- エラーメッセージ -->
+<% if @user.errors.any? %>
+  <%= @user.errors.count %>errors prohibited this obj from being saved:
+  <ul>
+    <% @user.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
+<!-- ユーザー情報入力フォーム -->
 <%= form_with model: @user do |f| %>
   <label for="user_name">Name</label>
   <%= f.text_field :name, autofocus: true, minlength: 2, maxlength: 20, id:"user_name" %>

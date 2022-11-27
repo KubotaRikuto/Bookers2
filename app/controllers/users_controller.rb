@@ -22,7 +22,7 @@ class UsersController < ApplicationController
     is_matching_login_user
     @user = User.find(params[:id])
     if @user.update(user_params)
-      # フラッシュメッセージはdeviseのnotice使用      flash[:notice] = "You have updated user successfully."
+      flash[:notice] = "You have updated user successfully."
       redirect_to user_path(@user.id)
     else
       render :edit

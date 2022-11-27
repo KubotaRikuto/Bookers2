@@ -1,6 +1,4 @@
-<% if notice %>
-  <p><%= notice %></p>
-<% end %>
+<p id="notice"><%= flash[:notice] %></p>
 <!-- エラーメッセージ -->
 <% if @new_book.errors.any? %>
   <%= @new_book.errors.count %>errors prohibited this obj from being saved:

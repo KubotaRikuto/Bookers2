@@ -22,5 +22,5 @@ class ApplicationController < ActionController::Base
   def user_info_new_book
     @user = current_user
     @new_book = Book.new
-  end
+  end 
 end
