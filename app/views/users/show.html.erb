@@ -1,9 +1,8 @@
-<p id="notice"><%= flash[:notice] %></p>
 <div class="container px-5 px-sm-0">
   <!-- エラーメッセージ -->
   <div id="error_explanation">
     <% if @new_book.errors.any? %>
-      <%= @new_book.errors.count %>errors prohibited this obj from being saved:
+      <h3><%= @new_book.errors.count %> errors prohibited this obj from being saved:</h3>
       <ul>
         <% @new_book.errors.full_messages.each do |message| %>
           <li><%= message %></li>

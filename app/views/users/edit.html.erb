@@ -1,20 +1,50 @@
-<h2>User info</h2>
-<!-- エラーメッセージ -->
-<% if @user.errors.any? %>
-  <%= @user.errors.count %>errors prohibited this obj from being saved:
-  <ul>
-    <% @user.errors.full_messages.each do |message| %>
-      <li><%= message %></li>
-    <% end %>
-  </ul>
-<% end %>
-<!-- ユーザー情報入力フォーム -->
-<%= form_with model: @user do |f| %>
-  <label for="user_name">Name</label>
-  <%= f.text_field :name, autofocus: true, minlength: 2, maxlength: 20, id:"user_name" %>
-  <label for="user_image">Image</label>
-  <%= f.file_field :profile_image, placeholder: "ファイルを選択", accept: "image/*" %>
-  <label for="user_introduction">Introduction</label>
-  <%= f.text_area :introduction, autofocus: true, maxlength: 50, id:"user_introduction" %>
-  <%= f.submit "Update User" %>
-<% end %>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
+      <h2>User info</h2>
+      <!-- エラーメッセージ -->
+      <div id="error_explanation">
+        <% if @user.errors.any? %>
+          <h3><%= @user.errors.count %> errors prohibited this obj from being saved:</h3>
+          <ul>
+            <% @user.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+        <% end %>
+      </div>
+      <!-- ユーザー情報入力フォーム -->
+      <%= form_with model: @user do |f| %>
+        <div class="form-group">
+          <div class="field_with_errors">
+            <label for="user_name">Name</label>
+          </div>
+          <div class="field_with_errors">
+            <%= f.text_field :name, autofocus: true, minlength: 2, maxlength: 20, class: "form-control name", id:"user_name" %>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="field_with_errors">
+            <label for="user_image">Image</label>
+          </div>
+          <div class="field_with_errors">
+            <%= f.file_field :profile_image, placeholder: "ファイルを選択", accept: "image/*", class: "form-container-file user_image", id: "user_profile_image" %>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="field_with_errors">
+            <label for="user_introduction">Introduction</label>
+          </div>
+          <div class="field_with_errors">
+            <%= f.text_area :introduction, autofocus: true, maxlength: 50, class: "form-control introduction", id: "user_introduction" %>
+          </div>
+        </div>
+        <div class="form-group">
+          <%= f.submit "Update User", class: "btn btn-secondary" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+
