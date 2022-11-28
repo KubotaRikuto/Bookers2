@@ -1,28 +1,47 @@
-<!-- user info & New book-->
-<%= render 'list', user: @user, book: @new_book %>
-
-<!-- users index-->
-<h2>Users</h2>
-<table>
-  <thead>
-    <th>image</th>
-    <th>name</th>
-    <th colspan="3"></th>
-  </thead>
-  <% @users.each do |users|%>
-    <tbody>
-      <tr>
-        <td>
-          <%= image_tag users.get_profile_image(80, 80) %>
-        </td>
-        <td>
-          <%= users.name %>
-        </td>
-        <td>
-          <!--users show-->
-          <%= link_to "Show", user_path(users.id) %>
-        </td>
-      </tr>
-    </tbody>
-  <% end %>
-</table>
+<p id="notice"><%= flash[:notice] %></p>
+<div class="container px-5 px-sm-0">
+  <!-- エラーメッセージ -->
+  <div id="error_explanation">
+    <% if @new_book.errors.any? %>
+      <%= @new_book.errors.count %>errors prohibited this obj from being saved:
+      <ul>
+        <% @new_book.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    <% end %>
+  </div>
+  <div class="row">
+    <div class="col-md-3">
+      <!-- user info & New book-->
+      <%= render 'list', user: @user, book: @new_book %>
+    </div>
+    <div class="col-md-8 offset-md-1">
+      <!-- users index-->
+      <h2>Users</h2>
+      <table>
+        <thead>
+          <th>image</th>
+          <th>name</th>
+          <th colspan="3"></th>
+        </thead>
+        <% @users.each do |users|%>
+          <tbody>
+            <tr>
+              <td>
+                <%= image_tag users.get_profile_image(80, 80) %>
+              </td>
+              <td>
+                <%= users.name %>
+              </td>
+              <td>
+                <!--users show-->
+                <%= link_to "Show", user_path(users.id) %>
+              </td>
+            </tr>
+          </tbody>
+        <% end %>
+      </table>
+    </div>
+  </div>
+</div>
