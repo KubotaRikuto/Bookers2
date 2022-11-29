@@ -29,7 +29,9 @@
           <tbody>
             <tr>
               <td>
-                <%= image_tag books.user.get_profile_image(80, 80) %>
+                <%= link_to user_path(books.user.id) do %>
+                  <%= image_tag books.user.get_profile_image(80, 80) %>
+                <% end %>
               </td>
               <td>
                 <%= link_to book_path(books.id) do %>
